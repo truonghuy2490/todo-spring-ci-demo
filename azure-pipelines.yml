@@ -1,0 +1,62 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+trigger:
+  - main
+
+pr:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: ApiValidation
+    displayName: API Validation
+    jobs:
+      - job: BuildAndTestApi
+        displayName: Build and test Spring Boot API
+        steps:
+          - checkout: self
+
+          - task: JavaToolInstaller@0
+            displayName: Set up Java 17
+            inputs:
+              versionSpec: '17'
+              jdkArchitectureOption: x64
+              jdkSourceOption: PreInstalled
+
+          - script: |
+              chmod +x mvnw
+              ./mvnw --batch-mode clean verify
+            displayName: Build and run tests
+
+  - stage: UiValidation
+    displayName: UI Validation
+    dependsOn: ApiValidation
+    condition: succeeded()
+    jobs:
+      - job: ValidateUiPlaceholder
+        steps:
+          - script: |
+              echo "UI validation placeholder passed."
+              echo "Replace this step when a frontend is added."
+            displayName: Placeholder UI validation
+
+  - stage: Deploy
+    displayName: Deploy simulation
+    dependsOn:
+      - ApiValidation
+      - UiValidation
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - job: SimulateDeploy
+        steps:
+          - script: |
+              echo "API and UI validation passed."
+              echo "Deployment simulation only - no application deployed."
+            displayName: Simulate deployment
+
