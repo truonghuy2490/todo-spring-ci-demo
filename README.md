@@ -1,6 +1,15 @@
+
 # Todo List Application
 
+![Java 17](https://img.shields.io/badge/Java-17-2ea44f?style=flat)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=flat&logo=springboot&logoColor=white)
+![CI: GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white)
+![CD: Azure DevOps](https://img.shields.io/badge/CD-Azure_DevOps-0078D4?style=flat&logo=azuredevops&logoColor=white)
+
+[![codecov](https://codecov.io/gh/truonghuy2490/todo-spring-ci-demo/branch/main/graph/badge.svg)](https://app.codecov.io/github/truonghuy2490/todo-spring-ci-demo)
+
 A simple Todo List web application built with Java 17, Spring Boot, Thymeleaf, Bootstrap 4.6.2, and H2 Database. This project demonstrates a complete CI/CD workflow using GitHub Actions, Azure DevOps Pipelines, and Azure App Service.
+
 
 ## Live Demo
 
