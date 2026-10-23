@@ -243,4 +243,18 @@ class TaskServiceTest {
         verify(taskRepository, times(2)).findById(1L);
         verify(taskRepository, times(2)).save(task);
     }
+
+    @Test
+    void getAllTasks_emptyRepository_returnsEmptyList() {
+        // Arrange
+        when(taskRepository.findAll()).thenReturn(List.of());
+
+        // Act
+        List<Task> result = taskService.getAllTasks();
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+        verify(taskRepository).findAll();
+    }
 }
