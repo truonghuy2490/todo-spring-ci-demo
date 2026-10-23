@@ -45,4 +45,4 @@ The application uses a file-based H2 database. Database files are stored in the 
 
 ## Stop the Application
 
-Press `Ctrl + C` in the terminal.
+Press `Ctrl + C` in the terminal. 
