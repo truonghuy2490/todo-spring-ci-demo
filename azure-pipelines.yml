@@ -32,15 +32,7 @@ stages:
           - script: |
               chmod +x mvnw
               ./mvnw --batch-mode clean verify
-            displayName: Build and generate coverage
-
-          - task: PublishPipelineArtifact@1
-            displayName: Publish JaCoCo coverage report
-            condition: always()
-            inputs:
-              targetPath: '$(System.DefaultWorkingDirectory)/target/site/jacoco'
-              artifact: 'jacoco-coverage-report'
-              publishLocation: 'pipeline'
+            displayName: Build and run tests
       
           - task: PublishPipelineArtifact@1
             displayName: Publish Spring Boot JAR
