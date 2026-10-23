@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+target/
+data/
+*.mv.db
+*.trace.db
+.env

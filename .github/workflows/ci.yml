@@ -1,12 +1,17 @@
-name: Spring Boot CI
+name: Todo CI-CD Pipeline
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
-  build-and-test:
+  api-validation:
+    name: API Validation
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +25,30 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Build and test
+      - name: Build and test API
         run: |
           chmod +x mvnw
           ./mvnw --batch-mode clean verify
+
+  ui-validation:
+    name: UI Validation (placeholder)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Validate UI pipeline placeholder
+        run: echo "UI validation placeholder passed - frontend not implemented yet"
+
+  deploy:
+    name: Deploy (simulation only)
+    runs-on: ubuntu-latest
+
+    needs: [api-validation, ui-validation]
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Simulate deployment
+        run: echo "Both validations passed. Deployment would start here."
