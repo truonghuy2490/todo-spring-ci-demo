@@ -25,10 +25,18 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Build and test API
+      - name: Build and generate coverage
         run: |
           chmod +x mvnw
           ./mvnw --batch-mode clean verify
+
+      - name: Upload JaCoCo report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-coverage-report
+          path: target/site/jacoco/
+          if-no-files-found: ignore
 
   ui-validation:
     name: UI Validation (placeholder)
