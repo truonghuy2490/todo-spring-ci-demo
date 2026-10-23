@@ -1,48 +1,116 @@
 # Todo List Application
 
-A simple Todo List web application built with Java 17, Spring Boot, Thymeleaf, Bootstrap 4.6.2, and H2 Database.
+A simple Todo List web application built with Java 17, Spring Boot, Thymeleaf, Bootstrap 4.6.2, and H2 Database. This project demonstrates a complete CI/CD workflow using GitHub Actions, Azure DevOps Pipelines, and Azure App Service.
 
-## Requirements
+## Live Demo
 
-* Java 17
-* Maven Wrapper (included in the project)
+**[Open Todo List Application](https://todo-demo-dzg6hte9bgbzdcbe.southeastasia-01.azurewebsites.net/)**
 
-## How to Run
+## Tech Stack
 
-1. Clone or download the project.
-
-2. Open a terminal in the project root directory.
-
-3. Run the following command on Windows:
-
-   ```powershell
-   .\mvnw.cmd spring-boot:run
-   ```
-
-4. Open your browser and visit:
-
-   http://localhost:8081
+- **Backend:** Java 17, Spring Boot
+- **Frontend:** Thymeleaf, Bootstrap 4.6.2
+- **Database:** H2 Database
+- **Build Tool:** Maven Wrapper
+- **CI:** GitHub Actions
+- **CD:** Azure DevOps Pipelines
+- **Hosting:** Azure App Service (Linux, Java 17)
 
 ## Features
 
-* Add tasks
-* Edit task titles
-* Delete tasks
-* Mark tasks as complete or incomplete
-* Save tasks in a file-based H2 database
+- Create new tasks
+- Edit task titles
+- Delete tasks
+- Mark tasks as complete or incomplete
+- Display task status in a simple, responsive interface
+- Store tasks using an H2 database
 
-## Run Tests
+## CI/CD Pipeline
 
-Execute the following command in the project root:
+The project uses GitHub Actions for Continuous Integration and Azure DevOps Pipelines for Continuous Deployment.
+
+1. **Code Push:** Push changes to the `main` branch on GitHub.
+2. **Continuous Integration:** GitHub Actions builds the application and runs automated tests.
+3. **Build and Validation:** Azure Pipelines validates the Spring Boot application using Maven Wrapper and runs the configured test steps.
+4. **Artifact Publishing:** The pipeline publishes the packaged JAR for deployment.
+5. **Continuous Deployment:** Azure Pipelines deploys the application to Azure App Service.
+6. **Live Application:** The updated application becomes available through its Azure-hosted URL.
+
+> Deployment runs only when the pipeline's configured branch and conditions are satisfied.
+
+## Requirements
+
+- Java 17
+- Maven Wrapper (included in the repository)
+
+## Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd <YOUR_PROJECT_DIRECTORY>
+```
+
+Replace the placeholders with your repository URL and project directory.
+
+### 2. Run the Application
+
+On Windows PowerShell:
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+On macOS or Linux:
+
+```bash
+chmod +x ./mvnw
+./mvnw spring-boot:run
+```
+
+### 3. Open the Application
+
+Visit:
+
+[http://localhost:8081](http://localhost:8081)
+
+### 4. Run Tests
+
+On Windows PowerShell:
 
 ```powershell
 .\mvnw.cmd test
 ```
 
+On macOS or Linux:
+
+```bash
+./mvnw test
+```
+
+To run the full Maven verification lifecycle, including configured verification checks:
+
+```bash
+./mvnw clean verify
+```
+
 ## Database
 
-The application uses a file-based H2 database. Database files are stored in the `data` directory and persist between application restarts.
+The application uses H2 Database. In the local environment, it is configured to store database files in the `data` directory, allowing data to persist between application restarts.
 
-## Stop the Application
+**Note:** Persistence on Azure depends on the configured database URL and storage. An in-memory H2 database loses its data when the application restarts, while local file-based storage does not automatically guarantee persistence on Azure App Service.
 
-Press `Ctrl + C` in the terminal. 
+## Deployment
+
+The application is hosted on Azure App Service with the Linux operating system and Java 17 runtime.
+
+The deployment workflow is configured through Azure DevOps Pipelines, which builds and packages the application before deploying the JAR artifact to the Web App.
+
+## Stopping the Application
+
+Press `Ctrl + C` in the terminal to stop the local application.
+
+## License
+
+This project is intended for learning and demonstration purposes.
